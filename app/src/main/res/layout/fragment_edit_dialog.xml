@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/modal"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/edit_sheet_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:paddingTop="22dp"
+                android:text="Edit Status"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_content_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:hapticFeedbackEnabled="true"
+        android:textColorHint="@color/colorWhite"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_sheet_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@color/colorWhite"
+            android:maxLength="100"
+            android:singleLine="true"
+            android:text="i am"
+            android:textColor="@color/colorPrimaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_sheet_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/tabcolors"
+            android:text="Save"
+            app:elevation="10dp"
+            app:icon="@drawable/ic_save"
+            app:iconGravity="start"
+            app:iconTint="@color/colorWhite" />
+       <ProgressBar
+           android:layout_width="wrap_content"
+           android:id="@+id/edit_sheet_progress"
+           android:visibility="gone"
+           android:indeterminate="true"
+           android:layout_marginStart="10dp"
+           android:progressTint="@color/colorPrimary"
+           android:indeterminateTint="@color/colorPrimary"
+           android:layout_height="wrap_content">
+
+       </ProgressBar>
+
+    </LinearLayout>
+
+        </LinearLayout>

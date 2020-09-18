@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">WhatsapClone</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="maintitle">Welcome to Whatsapp \nClone</string>
+    <string name="mainhaveaccount">Already Have An Account</string>
+    <string name="maincreateaccount">Create An Account</string>
+    <string name="login_login">Login</string>
+    <string name="create_account_create">Create Account</string>
+    <string name="signup_enter_username">Enter UserName</string>
+    <string name="signup_enter_email">Enter Email</string>
+    <string name="signup_create_password">Create Password</string>
+    <string name="signup_verify_password">Verify Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

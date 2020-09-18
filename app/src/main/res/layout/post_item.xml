@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:strokeWidth="3dp"
+    app:strokeColor="@color/grey_200"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/user_linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        android:gravity="center|start"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/post_userimage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:elevation="20dp"
+            android:src="@drawable/happy_woman"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/post_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="3dp"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:text="SIMON TULE"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="end">
+            <TextView
+                android:id="@+id/post_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:focusable="auto"
+                android:longClickable="true"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="23rd Aug. 2020 "
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_linearLayout5">
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center|top"
+            android:background="#BB0AF1"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="28dp"
+            android:foreground="@drawable/gradient"
+            android:requiresFadingEdge="horizontal|vertical"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/post_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bong2"
+            android:text="who loves sex more between boys and girls"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+
+        android:id="@+id/post_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/bong2"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:maxLines="3"
+        android:text="i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj"
+        android:textAlignment="viewStart"
+        android:textColor="#070707"
+        android:textSize="18sp"
+        app:animation_duration="750"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/post_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="100 Likes"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="13sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/post_hates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="100 Dislike"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:drawableTint="@color/colorWhite" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/options_view"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:id="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/option1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/post_vote1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="1 votes"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NO"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/post_vote2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="2 votes"
+                android:textColor="#F40418"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="DONT KNOW"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/post_vote3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="1 votes"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/post_seemore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="2dp"
+            android:elevation="4dp"
+            android:longClickable="true"
+            android:text="VIEW"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_open_in_new_black_24dp"
+            app:rippleColor="@color/colorAccent" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+
+           >
+           <ImageView
+               android:id="@+id/post_lovepost"
+               android:layout_width="43dp"
+               android:layout_height="40dp"
+               android:elevation="10dp"
+               android:longClickable="true"
+               android:src="@drawable/ic_heart"
+               android:text="like"
+               android:tint="@color/colorPrimary"
+               app:iconGravity="end|textStart"
+               app:iconPadding="1dp"
+               app:rippleColor="@color/colorAccent" />
+
+           <ImageView
+               android:id="@+id/post_hatepost"
+               android:layout_width="43dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="10dp"
+               android:layout_marginEnd="3dp"
+               android:clickable="true"
+               android:elevation="10dp"
+               android:focusable="true"
+               android:longClickable="true"
+               android:src="@drawable/hate"
+               app:iconGravity="end|textStart"
+               app:rippleColor="@color/colorAccent" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@android:color/darker_gray" />
+</LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>

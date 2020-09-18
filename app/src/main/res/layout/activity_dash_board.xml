@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DashBoard">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/DashBoard_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/dashboardTablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:elevation="0dp"
+            app:layout_scrollFlags="enterAlwaysCollapsed"
+            app:tabBackground="@color/colorPrimary"
+            app:tabGravity="fill"
+            app:tabIconTint="@color/tabcolors"
+            app:tabIndicatorColor="@color/colorWhite"
+            app:tabTextColor="@color/tabcolors">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_tab_group"
+                android:text="Chats"
+                android:tint="@color/colorWhite"
+                app:tint="@color/colorWhite" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@android:drawable/stat_notify_chat"
+                android:text="Messages" />
+
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animationCache="true"
+    android:background="@color/transparent"
+    android:clickable="true"
+    android:focusable="auto"
+    android:padding="3dp"
+    app:cardPreventCornerOverlap="false"
+    app:rippleColor="@color/colorPrimary">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/message_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:animationCache="true"
+        android:clickable="true"
+        android:focusable="auto"
+        android:padding="3dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="7dp"
+        android:layout_alignParentEnd="true"
+        app:rippleColor="@color/colorPrimary">
+
+        <LinearLayout
+            android:id="@+id/message_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="false"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/message_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:clickable="false"
+                android:editable="false"
+                android:imeOptions="flagNoPersonalizedLearning"
+                android:inputType="textMultiLine"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|end">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/message_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:clickable="false"
+                    android:text="9.000"
+                    android:textColor="#B6B6B6"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/message_seen"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_seen_green_24dp"
+                    android:tint="#04FF26"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

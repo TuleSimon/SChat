@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/review_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="POST"
+        android:textColor="@color/colorWhite"
+        app:icon="@drawable/ic_send"
+        app:iconTint="@color/colorWhite"
+        app:layout_anchor="@id/review_appbar"
+        app:layout_anchorGravity="bottom|end">
+
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/review_appbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/review_collasping"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="snapMargins|scroll|enterAlways|exitUntilCollapsed|snap"
+            app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
+            app:toolbarId="@+id/review_collasping_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/review_app_bar_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center|top"
+                    android:fadingEdge="horizontal|vertical"
+                    android:fadingEdgeLength="28dp"
+                    android:foreground="@drawable/gradient"
+                    android:background="#BB0AF1"
+                    android:requiresFadingEdge="horizontal|vertical"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/review_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bong2"
+                    android:text="hello"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/review_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <ImageView
+                    android:id="@+id/review_backbutton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_backing" />
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/review_nestedscroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="4dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="@+id/expandable_text"
+                app:layout_constraintEnd_toStartOf="@+id/expandable_text"
+                app:layout_constraintTop_toBottomOf="@+id/review_body2" />
+
+            <TextView
+                android:id="@+id/review_body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom2"
+                android:fontFamily="@font/bong2"
+                android:padding="10dp"
+                android:text="Body"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <at.blogc.android.views.ExpandableTextView
+
+                android:id="@+id/expandable_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/bong2"
+                android:maxLines="3"
+                android:text="i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj i wann hhs h hjhs jsdjas jhsdjhasjd jhsdjhjsd sjhdjasdjasdhjkas afjkasfjks sjhfjkshfjkasdhkasfjhsfkj"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                app:animation_duration="750"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/review_body2" />
+
+
+            <!-- Optional parameter animation_duration: sets the duration of the expand animation -->
+
+            <Button
+                android:id="@+id/button_toggle"
+                android:layout_width="58dp"
+                android:layout_height="45dp"
+                android:background="@drawable/ic_dropdown"
+                android:backgroundTintMode="screen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/expandable_text" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:id="@+id/review_tags_card"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="10dp"
+                android:elevation="7dp"
+                android:paddingTop="30dp"
+                app:cardBackgroundColor="@color/grey_200"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="7dp"
+                app:cardForegroundColor="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expandable_text">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ADD SOME TAGS"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/review_entertag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                        android:hint="e.g Marriage"
+                        android:inputType="textFilter"
+                        app:layout_constraintBottom_toBottomOf="@id/review_addTag"
+                        app:layout_constraintEnd_toStartOf="@id/review_addTag"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/review_addTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADD"
+                        app:layout_constraintBottom_toTopOf="@id/review_tagsrecyclerview"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_tagsrecyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/tagitem" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:elevation="7dp"
+                android:paddingTop="30dp"
+                app:cardBackgroundColor="@color/grey_200"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="7dp"
+                app:cardForegroundColor="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/review_tags_card">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ADD OPTIONS"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <EditText
+                        android:id="@+id/review_enteroptions"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrst uvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                        android:hint="e.g YES/NO/NO IDEA"
+                        android:inputType="textFilter"
+                        app:layout_constraintBottom_toBottomOf="@id/review_addOptions"
+                        app:layout_constraintEnd_toStartOf="@id/review_addOptions"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/review_addOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADD"
+                        app:layout_constraintBottom_toTopOf="@id/review_Optionrecyclerview"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/review_Optionrecyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/tagitem" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
