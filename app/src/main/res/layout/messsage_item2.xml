@@ -16,15 +16,15 @@
         android:id="@+id/message_cardview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="30dp"
         android:animationCache="true"
         android:clickable="true"
         android:focusable="auto"
         android:padding="3dp"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardBackgroundColor="@color/colorWhite"
         app:cardCornerRadius="15dp"
         app:cardElevation="7dp"
-        android:layout_alignParentEnd="true"
         app:rippleColor="@color/colorPrimary">
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:imeOptions="flagNoPersonalizedLearning"
                 android:inputType="textMultiLine"
                 android:textAlignment="textEnd"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <LinearLayout
@@ -67,7 +67,7 @@
                     android:layout_marginEnd="5dp"
                     android:clickable="false"
                     android:text="9.000"
-                    android:textColor="#B6B6B6"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 

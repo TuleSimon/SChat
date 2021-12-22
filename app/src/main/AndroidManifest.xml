@@ -7,14 +7,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/slogo2"
+        android:label="SoniaCHAT"
+        android:roundIcon="@drawable/slogo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
-        <activity android:name=".activity.Reviewpost"></activity>
-        <activity android:name=".activity.reviewActivity" android:launchMode="singleTop" />
-        <activity android:name=".activity.createPost" android:launchMode="singleTop" />
+        <activity android:name=".Authentication"></activity>
         <activity
             android:name=".activity.messageActivity"
             android:parentActivityName=".activity.DashBoard"

@@ -4,7 +4,9 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.widget.ImageView
 import android.widget.Toast
+import com.example.whatsapclone.R
 import com.example.whatsapclone.model.userModel
 import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayout
@@ -28,6 +30,9 @@ import kotlin.collections.HashMap
 
 object  firebase {
 
+    var bg: ImageView?=null
+    var bitmap3: Bitmap?=null
+    var bitmap2: Bitmap?=null
     var bitmap: Bitmap ?= null
     var resultUri: Uri?=null
     var userID: String ?=null
@@ -87,6 +92,7 @@ object  firebase {
         firebaseauth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task: Task<AuthResult> ->
             if(task.isSuccessful){
                 currentuser= firebaseauth.currentUser
+                currentuser!!.sendEmailVerification()
                 userID= currentuser!!.uid
 
                 val userDatabase= firebaseDatabase.reference.child("users").child(userID!!)
@@ -99,7 +105,7 @@ object  firebase {
                 user.status="Hello There"
 
                 userDatabase.setValue(user).addOnCompleteListener { task: Task<Void> -> progressDialog.dismiss()
-                Toast.makeText(progressDialog.context,"Sucessful",Toast.LENGTH_LONG).show()
+                Toast.makeText(progressDialog.context,"Sucessfully created account",Toast.LENGTH_LONG).show()
                     populate()
                 }
 
@@ -121,7 +127,7 @@ object  firebase {
 
 
     fun createProgressDialog(context:Context, title:String, message:String){
-        progressDialog= ProgressDialog(context)
+        progressDialog= ProgressDialog(context, R.style.MyDialog)
         progressDialog.setTitle(title)
         progressDialog.setMessage(message)
         progressDialog.show()

@@ -23,18 +23,31 @@
         app:civ_border_color="@color/colorPrimary"
         app:civ_border_width="2dp" />
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/message_cardview"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/background" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/message_cardview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="5dp"
         android:layout_toRightOf="@id/message_userImage"
         android:animationCache="true"
         android:clickable="true"
         android:focusable="auto"
         android:padding="3dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="#00FEFFFF"
         app:cardCornerRadius="15dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="false"
@@ -79,7 +92,7 @@
                 android:layout_marginBottom="2dp"
                 android:clickable="false"
                 android:text="3:08pm"
-                android:textColor="@color/grey_200"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </RelativeLayout>

@@ -1,17 +1,22 @@
 package com.example.whatsapclone.activity
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
 
-import com.example.whatsapclone.fragments.Feeds
+
 import com.example.whatsapclone.R
 import com.example.whatsapclone.adapters.viewpagerAdapter
+import com.example.whatsapclone.dialogs.Notifications
 import com.example.whatsapclone.firebase.firebase
 import com.example.whatsapclone.fragments.ChatFragment
 import com.example.whatsapclone.fragments.UsersFragments
@@ -38,29 +43,39 @@ class DashBoard : AppCompatActivity() {
 
 
 
+    var notificationManager: NotificationManager?=null
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createChannel(){
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val channel = NotificationChannel(Notifications().CHANNEL_ID,"New message", NotificationManager.IMPORTANCE_DEFAULT)
+            notificationManager!!.createNotificationChannel(channel)
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dash_board)
-        Animatoo.animateSwipeRight(this)
-
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            createChannel()
+        }
         val chatFragment=ChatFragment()
         UsersFragment= UsersFragments()
-        val post= Feeds()
+        firebase.bg=bg
 
-        list= mutableListOf(post,chatFragment,UsersFragment!!)
-        list2 = mutableListOf("Feeds","Messages","Users")
+        list= mutableListOf(chatFragment,UsersFragment!!)
+        list2 = mutableListOf("Messages","Users")
 
 
         DashBoard_viewpager.adapter= viewpagerAdapter(this,list!!,list2!!)
         TabLayoutMediator(dashboardTablayout, DashBoard_viewpager){ tab, position ->
             tab.text=list2!!.get(position)
                 when(position){
-                1 ->   {tab.icon= resources.getDrawable(R.drawable.ic_message)
+                0 ->   {tab.icon= resources.getDrawable(R.drawable.ic_message)
                 setBadge(tab)
                     firebase.tab = tab
                 }
-                2 -> {  tab.icon= resources.getDrawable(R.drawable.ic_person_low)}
-                0->    { tab.icon= resources.getDrawable(R.drawable.ic_feeds) }
+                1 -> {  tab.icon= resources.getDrawable(R.drawable.ic_person_low)}
+                //0->    { tab.icon= resources.getDrawable(R.drawable.ic_feeds) }
                 }
 
         }.attach()
@@ -117,9 +132,9 @@ class DashBoard : AppCompatActivity() {
                     val list= snapshot.children
                     for(i in list.iterator()){
                         val lists=i.getValue(activeChats::class.java)
-                        Toast.makeText(this@DashBoard,lists!!.lastMessage +" "+ lists!!.seen, Toast.LENGTH_LONG ).show()
-                        if(lists.seen==false){
-                            count++}
+                        if(lists!!.receiver==FirebaseAuth.getInstance().currentUser!!.uid)
+                            if(!lists.seen){
+                                count++}
 
                     }
 
@@ -139,7 +154,8 @@ class DashBoard : AppCompatActivity() {
                 switchScenes(Settings())
             }
             R.id.dashboardmenu_logout -> {FirebaseAuth.getInstance().signOut()
-                switchScenes(MainActivity())
+                startActivity(Intent(this,MainActivity::class.java)
+                )
                 finish() }
         }
         return super.onOptionsItemSelected(item)
@@ -161,7 +177,6 @@ class DashBoard : AppCompatActivity() {
         Intents= Intent(this,activity::class.java)
         Intents.putExtra("user",false)
         startActivity(Intents)
-        Animatoo.animateSlideLeft(this)
         delay(1000)
     }
 

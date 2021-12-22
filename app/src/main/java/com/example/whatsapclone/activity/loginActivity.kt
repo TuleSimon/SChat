@@ -11,9 +11,12 @@ import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.afollestad.materialdialogs.MaterialDialog
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.daimajia.androidanimations.library.attention.TadaAnimator
 import com.example.whatsapclone.R
+import com.example.whatsapclone.dialogs.Dialogs
 import com.example.whatsapclone.firebase.firebase
 import com.example.whatsapclone.firebase.firebase.currentuser
 import com.example.whatsapclone.firebase.firebase.progressDialog
@@ -26,6 +29,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 
+lateinit var dialogs: MaterialDialog
 class loginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
@@ -43,7 +47,7 @@ class loginActivity : AppCompatActivity() {
             val password=login_enterpassword.text.toString().trim()
 
             if(email.isNotEmpty() && password.isNotEmpty()){
-                firebase.createProgressDialog(this,"Logging In", "Please Wait")
+                dialogs = Dialogs().ShowProgressDialogs(this)
                 login(email,password)
               }
             else{
@@ -55,7 +59,6 @@ class loginActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Animatoo.animateSwipeRight(this)
     }
 
 
@@ -71,7 +74,6 @@ class loginActivity : AppCompatActivity() {
     suspend fun launchs(activity: AppCompatActivity){
         dashBoardIntent= Intent(this,activity::class.java)
         startActivity(dashBoardIntent)
-        Animatoo.animateSplit(this)
         delay(1000)
         finish()
     }
@@ -79,36 +81,12 @@ class loginActivity : AppCompatActivity() {
 
     suspend fun animate(){
 
-        val animatorSet = AnimatorSet()
-        animatorSet.playTogether(
-            ObjectAnimator.ofFloat(imageView2, "translationY", -1000f, 0f),
-            ObjectAnimator.ofFloat(imageView2, "alpha", 0f, 1f),
-            ObjectAnimator.ofFloat(login_login, "translationY", -1000f, 0f),
-            ObjectAnimator.ofFloat(logincardview, "alpha", 0f, 1f),
-            ObjectAnimator.ofFloat(logincardview, "translationY", 1300f, 0f)
-        )
-        animatorSet.interpolator = DecelerateInterpolator()
-        animatorSet.duration = 1000
-        animatorSet.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                val animatorSet2 = AnimatorSet()
-                animatorSet2.playTogether(
-                    ObjectAnimator.ofFloat(login_enteremail_parent, "translationX", -100f, 0f),
-                    ObjectAnimator.ofFloat(login_enterpassword_parent, "translationX", -50f, 0f),
-                    ObjectAnimator.ofFloat(login_loginbutton, "translationX", -50f, 0f),
-                    ObjectAnimator.ofFloat(mainalreadyhave, "alpha", 0f, 1f),
-                    ObjectAnimator.ofFloat(maincreateacc, "alpha", 0f, 1f)
+        YoYo.with(Techniques.SlideInRight).interpolate(OvershootInterpolator()).onStart {
+            YoYo.with(Techniques.SlideInRight).interpolate(OvershootInterpolator()).onStart {
+                YoYo.with(Techniques.SlideInRight).interpolate(OvershootInterpolator()).delay(500).playOn(login_loginbutton)
+            }.delay(500) .playOn(login_enterpassword_parent)
+        }.playOn(login_enteremail_parent)
 
-                    //ObjectAnimator.ofFloat(mainlogo, "scaleY", 1f, 0.5f, 1f)
-                )
-                ViewAnimator().addAnimationBuilder(imageView2).rotation(360f).duration(1500).start()
-                ViewAnimator().addAnimationBuilder(login_loginbutton).shake().pulse().duration(1000).start();
-                animatorSet2.interpolator = BounceInterpolator()
-                animatorSet2.duration = 1000
-                animatorSet2.start()
-            }
-        })
-        animatorSet.start()
     }
 
 
@@ -117,24 +95,37 @@ class loginActivity : AppCompatActivity() {
         val firebaseAuth= FirebaseAuth.getInstance()
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task: Task<AuthResult> ->
             if(task.isSuccessful){
+
                 currentuser= firebaseAuth.currentUser
+
                 try{
-                    progressDialog.dismiss()
+                   dialogs.dismiss()
                 }
                 catch (e:Exception){
 
                 }
 
                 //  Toast.makeText(progressDialog.context, "Logged In",Toast.LENGTH_LONG).show()
-                switchScenes(DashBoard())
+                if(currentuser!!.isEmailVerified){
+                switchScenes(DashBoard())}
+                else{
+                    Dialogs().showErrorDialog("Email Not Verified","Please Verify Your Email before Logging In",this)
+                    currentuser!!.sendEmailVerification()
+                }
+
 
             }
-
+            task.addOnFailureListener {
+                Toast.makeText(this, task.exception!!.message.toString(),Toast.LENGTH_LONG).show()
+                login_enterpassword_parent.error= task.exception!!.message.toString()
+                dialogs.dismiss()
+                value=false
+            }
             if(task.isCanceled){
                 try{
                     Toast.makeText(this, task.exception!!.message.toString(),Toast.LENGTH_LONG).show()
                     login_enterpassword_parent.error= task.exception!!.message.toString()
-                    progressDialog.dismiss()
+                    dialogs.dismiss()
                     value=false
                 }
                 catch (e:Exception){

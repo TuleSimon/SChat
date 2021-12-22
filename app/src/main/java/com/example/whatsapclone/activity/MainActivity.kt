@@ -10,7 +10,7 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import com.example.whatsapclone.Authentication
 import com.example.whatsapclone.R
 import com.example.whatsapclone.firebase.firebase
 import com.example.whatsapclone.firebase.firebase.mauth
@@ -26,17 +26,29 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
 
 
 
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                // Set the content to appear under the system bars so that the
+                // content doesn't resize when the system bars hide and show.
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                // Hide the nav bar and status bar
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN)
+    }
 
     override fun onStart() {
         super.onStart()
         firebase.firebaseauth.addAuthStateListener(mauth!!)
-        CoroutineScope(Main).launch {
-            animate()
-        }
+
     }
 
 
@@ -50,109 +62,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mainalreadyhave.setOnClickListener(this)
-        maincreateacc.setOnClickListener(this)
+        hideSystemUI()
         mauth = FirebaseAuth.AuthStateListener {
             var user = it.currentUser
-            if (it.currentUser?.email != null) {
-                Animatoo.animateSlideLeft(this)
-                switchScenes2(DashBoard())
-
+            if (it.currentUser?.email != null &&  it.currentUser?.isEmailVerified!!) {
+                it.currentUser!! .getIdToken(true).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        startActivity(Intent(this, DashBoard::class.java))
+                    finish()}
+                    else{
+                        startActivity(Intent(this, Authentication::class.java))
+                        finish()
+                    }
+                }
+            }
+            else{
+                startActivity(Intent(this, Authentication::class.java))
+                finish()
             }
         }
     }
-
-
-        override fun onResume() {
-            super.onResume()
-            Animatoo.animateSwipeRight(this)
-        }
-
-
-        suspend fun animate() {
-
-            val animatorSet = AnimatorSet()
-            animatorSet.playTogether(
-                ObjectAnimator.ofFloat(mainlogo, "translationY", -1000f, 0f),
-                ObjectAnimator.ofFloat(mainlogo, "alpha", 0f, 1f),
-                ObjectAnimator.ofFloat(maintitle, "translationY", -1000f, 0f),
-                ObjectAnimator.ofFloat(mainalreadyhave, "alpha", 0f, 0f),
-                ObjectAnimator.ofFloat(maincreateacc, "alpha", 0f, 0f),
-                ObjectAnimator.ofFloat(maincardview, "translationY", 1300f, 0f)
-            )
-            animatorSet.interpolator = DecelerateInterpolator()
-            animatorSet.duration = 1000
-            animatorSet.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    val animatorSet2 = AnimatorSet()
-                    animatorSet2.playTogether(
-                        ObjectAnimator.ofFloat(mainalreadyhave, "translationX", -100f, 0f),
-                        ObjectAnimator.ofFloat(maincreateacc, "translationX", -50f, 0f),
-                        ObjectAnimator.ofFloat(mainalreadyhave, "alpha", 0f, 1f),
-                        ObjectAnimator.ofFloat(maincreateacc, "alpha", 0f, 1f)
-                        //ObjectAnimator.ofFloat(mainlogo, "scaleY", 1f, 0.5f, 1f)
-                    )
-                    ViewAnimator().addAnimationBuilder(mainlogo).rotation(360f).duration(1500)
-                        .start()
-                    animatorSet2.interpolator = OvershootInterpolator()
-                    animatorSet2.duration = 1000
-                    animatorSet2.start()
-                }
-            })
-            animatorSet.start()
-        }
-
-        var loginintents: Intent? = null
-        override fun onClick(v: View?) {
-            when (v!!.id) {
-                R.id.mainalreadyhave -> {
-                    firebase.createProgressDialog(this, "Loading", "Please Wait")
-                    switchScenes(loginActivity())
-                }
-                R.id.maincreateacc -> {
-                    firebase.createProgressDialog(this, "Loading", "Please Wait")
-                    switchScenes(createAccount())
-                }
-
-            }
-
-        }
-
-        fun switchScenes(activity: AppCompatActivity) {
-            CoroutineScope(Main).launch {
-                launchs(activity)
-            }
-        }
-
-        fun switchScenes2(activity: AppCompatActivity) {
-            CoroutineScope(Main).launch {
-                launchs(activity)
-            }
-        }
-
-        suspend fun launchs(activity: AppCompatActivity) {
-            loginintents = Intent(this, activity::class.java)
-            startActivity(loginintents)
-            Animatoo.animateSwipeLeft(this)
-            try {
-                firebase.progressDialog.dismiss()
-            } catch (e: Exception) {
-
-            }
-        }
-
-        suspend fun launchs2(activity: AppCompatActivity) {
-            loginintents = Intent(this, activity::class.java)
-            startActivity(loginintents)
-            Animatoo.animateSwipeLeft(this)
-            try {
-                firebase.progressDialog.dismiss()
-            } catch (e: Exception) {
-
-            }
-            delay(400)
-            finish()
-        }
 
 
     }

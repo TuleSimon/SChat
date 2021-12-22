@@ -4,24 +4,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.BounceInterpolator
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
+import android.widget.Toast
+import com.afollestad.materialdialogs.MaterialDialog
+
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.example.whatsapclone.R
+import com.example.whatsapclone.dialogs.Dialogs
 import com.example.whatsapclone.firebase.firebase
 import com.example.whatsapclone.firebase.firebase.isEmailValid
+import com.example.whatsapclone.model.userModel
 import com.github.florent37.viewanimator.ViewAnimator
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.AuthResult
 import kotlinx.android.synthetic.main.activity_create_account.*
 import java.util.regex.Pattern
 
 class createAccount : AppCompatActivity(), View.OnClickListener {
 
-    override fun onStart() {
-        super.onStart()
-        ViewAnimator().addAnimationBuilder(createacardview).zoomIn().interpolator(BounceInterpolator()).duration(1500).start()
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,26 +34,68 @@ class createAccount : AppCompatActivity(), View.OnClickListener {
 
     override fun onPause() {
         super.onPause()
-        Animatoo.animateSwipeRight(this)
+
     }
+
+    lateinit var dialogs: MaterialDialog
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.create_createbutton->{
                 if(!hasError()) {
                     Snackbar.make(create_createbutton, "Logging in", Snackbar.LENGTH_LONG).show()
-                    firebase.createProgressDialog(this, "Creating User","Please Wait")
-                    firebase.createAccount(
+                    dialogs = Dialogs().ShowProgressDialogs(this)
+                    createAccount(
                         signup_enterusername.text.toString().trim(),
                         signup_enteremail.text.toString().trim(),
                         signup_createpassword.text.toString(),
                         signup_enterphone.text.toString()
                     )
+
+
                 }
 
 
             }
         }
+    }
+
+    fun createAccount(username:String, email:String, password:String, phone:String):Boolean{
+        firebase.firebaseauth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task: Task<AuthResult> ->
+            if(task.isSuccessful){
+                firebase.currentuser = firebase.firebaseauth.currentUser
+                firebase.currentuser!!.sendEmailVerification()
+                firebase.userID = firebase.currentuser!!.uid
+
+                val userDatabase= firebase.firebaseDatabase.reference.child("users").child(firebase.userID!!)
+
+                val user = userModel()
+                user.username=username
+                user.profilePicture="profilepix"
+                user.thumb="thumb"
+                user.phone=phone
+                user.status="Hello There"
+
+                userDatabase.setValue(user).addOnCompleteListener { task: Task<Void> ->
+                    dialogs.dismiss()
+                    Toast.makeText(
+                        this,"Sucessfully created account",
+                        Toast.LENGTH_LONG).show()
+                    firebase.populate()
+                    Dialogs().ShowDoneDialogs (this, "Account Created Successfully","Check your Email and Verify Your Email before Logging In")
+                }
+
+            }
+
+            else{
+                dialogs.dismiss()
+                Toast.makeText(
+                    this, task.exception!!.message.toString(),
+                    Toast.LENGTH_LONG).show()
+                Dialogs().showErrorDialog("Error Occurred", task.exception!!.message.toString(),this)
+            }
+        }
+        return true
     }
 
     fun hasError():Boolean{

@@ -6,13 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChatFragment">
 
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit2"
+        style="@style/SpinKitView.Large.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        app:SpinKit_Color="@color/colorAccent"
+        app:SpinKit_Style="ChasingDots"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/active_emptytitle" />
     <TextView
         android:id="@+id/active_emptytitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You Have No Active Chats, \n Click The Icon Below to start Chatting"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,13 +42,13 @@
         android:src="@drawable/ic_person_add_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/active_emptytitle" />
+        app:layout_constraintTop_toBottomOf="@+id/active_emptytitle"
+        app:tint="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activeChats_recyclerview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/grey_200"
         android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -11,10 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.bumptech.glide.Glide
 import com.example.whatsapclone.R
 import com.example.whatsapclone.activity.Settings
+import com.example.whatsapclone.encryption.AESCrptoChst
 import com.example.whatsapclone.firebase.firebase
 import com.example.whatsapclone.model.messageModel
 import com.example.whatsapclone.model.userModel
@@ -37,6 +37,7 @@ class messageAdapter(var models: FirebaseRecyclerOptions<messageModel>, var uid:
      {
 
 
+         var aes: AESCrptoChst = AESCrptoChst("lv39eptlvuhaqqsr")
         inner class viewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var userImage =itemView.message_userImage
         var messageTextView = itemView.message_message
@@ -83,7 +84,15 @@ class messageAdapter(var models: FirebaseRecyclerOptions<messageModel>, var uid:
 
          override fun onBindViewHolder(holder: viewHolder, position: Int, model: messageModel) {
              holder.dateTextView.text= firebase.convertDate( model.date!!)
-             holder.messageTextView.text = model.message
+
+             try{
+                 val message =aes.decrypt( model.message)
+                 holder.messageTextView.text =message
+             }
+
+             catch (e:Exception){
+                 print(e.message)
+             }
 
 
             if(!model.sender.equals(FirebaseAuth.getInstance().currentUser!!.uid)) {

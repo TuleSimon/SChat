@@ -1,132 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".activity.loginActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:src="@drawable/chat_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/logincardview"
-        android:layout_width="300dp"
+    <TextView
+        android:id="@+id/login_login2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="3"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="20dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="14dp"
-        >
+        android:layout_marginEnd="10dp"
+        android:text="Welcome Back!!, Login Now annd continue your journey with us"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
-        <ScrollView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="300dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/login" />
+
+    <TextView
+        android:id="@+id/login_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/login_login"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_login2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_login">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_enteremail_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:hint="Enter Email"
+            android:textColorHint="@color/background"
+            app:boxStrokeColor="@color/background"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconCheckable="true"
+            app:errorEnabled="true"
+            app:helperTextEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:startIconDrawable="@drawable/ic_email_black_24dp"
+            app:startIconTint="@color/colorWhite">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_enteremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:drawableEnd="@drawable/ic_email_black_24dp"
+                android:inputType="textWebEmailAddress|textEmailAddress"
+                android:selectAllOnFocus="false"
+                android:singleLine="true"
+                android:textColor="@color/background" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/login_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="50dp"
-                    android:text="@string/login_login"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_enterpassword_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password"
+            android:outlineAmbientShadowColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            app:boxStrokeColor="@color/background"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
+            app:errorEnabled="true"
+            app:helperTextEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorWhite"
+            app:startIconDrawable="@drawable/ic_baseline_key_24"
+            app:startIconTint="@color/colorWhite">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_enterpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/login_enteremail_parent"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Enter Email"
-                        android:textColorHint="@color/colorWhite"
-                        app:boxStrokeColor="@color/colorPrimary"
-                        app:boxStrokeWidth="1dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:errorEnabled="true"
-                        app:helperTextEnabled="true"
-                        app:hintAnimationEnabled="true"
-                        app:hintEnabled="true">
+                android:textColor="@color/colorWhite" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/login_enteremail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textWebEmailAddress|textEmailAddress"
-                            android:selectAllOnFocus="false"
-                            android:singleLine="true" />
-                    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_loginbutton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Login"
+            app:cornerRadius="10dp"
+            app:elevation="7dp"
+            app:icon="@drawable/ic_baseline_login_24"
+            app:iconGravity="textStart" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/login_enterpassword_parent"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Enter Password"
-                        android:outlineAmbientShadowColor="@color/colorWhite"
-                        android:textColorHint="@color/colorWhite"
-                        app:boxStrokeColor="@color/colorPrimary"
-                        app:boxStrokeWidth="1dp"
-                        app:boxStrokeWidthFocused="2dp"
-                        app:errorEnabled="true"
-                        app:helperTextEnabled="true"
-                        app:hintAnimationEnabled="true"
-                        app:hintEnabled="true"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/colorWhite">
+    </LinearLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/login_enterpassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textPassword"
-
-                            />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/login_loginbutton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:text="Login"
-                        app:cornerRadius="10dp"
-                        app:elevation="7dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-    </com.google.android.material.card.MaterialCardView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

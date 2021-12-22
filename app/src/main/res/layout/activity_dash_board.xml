@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.DashBoard">
 
+    <ImageView
+        android:id="@+id/bg"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/bg2" />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/DashBoard_viewpager"
         android:layout_width="match_parent"
@@ -17,6 +24,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/black"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
 
@@ -27,7 +35,7 @@
             android:background="@color/colorWhite"
             android:elevation="0dp"
             app:layout_scrollFlags="enterAlwaysCollapsed"
-            app:tabBackground="@color/colorPrimary"
+            app:tabBackground="@color/black"
             app:tabGravity="fill"
             app:tabIconTint="@color/tabcolors"
             app:tabIndicatorColor="@color/colorWhite"

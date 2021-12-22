@@ -15,7 +15,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.bumptech.glide.GenericTransitionOptions.with
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Glide.with
@@ -117,7 +116,6 @@ class Settings : AppCompatActivity(), editDialogFragment.OnSaveClick {
 
     override fun onPause() {
         super.onPause()
-        Animatoo.animateFade(this)
     }
 
 
@@ -223,7 +221,7 @@ var thumbs=""
                 isFirstResource: Boolean
             ): Boolean {
                 Toast.makeText(this@Settings,"Failed to load Image", Toast.LENGTH_LONG).show()
-                Glide.with(this@Settings).load(thumb).into(settings_profileimage)
+                //Glide.with(this@Settings).load(thumb).into(settings_profileimage)
                 return true
             }
 
@@ -238,6 +236,7 @@ var thumbs=""
                 settings_profileimage.setImageBitmap(bitmap)
                 settings_profileimage.setOnClickListener {
                     val intent= Intent(this@Settings,viewProfileImage::class.java)
+                    intent.putExtra("mode","settings")
                     startActivity(intent)
                 }
                 return true
@@ -278,7 +277,6 @@ var thumbs=""
             message.putExtra("thumb",thumbs)
             message.putExtra("uid",firebase.userID)
             message.putExtra("name",profile_username.text.toString())
-            Animatoo.animateSlideRight(this)
             startActivity(message)
         }
         else{

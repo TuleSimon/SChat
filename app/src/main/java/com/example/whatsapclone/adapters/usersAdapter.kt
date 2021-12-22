@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.blogspot.atifsoftwares.animatoolib.Animatoo
 import com.bumptech.glide.Glide
 import com.example.whatsapclone.R
 import com.example.whatsapclone.activity.Settings
@@ -52,7 +51,6 @@ class usersAdapter(var model: FirebaseRecyclerOptions<userModel>, var context:Co
                 val Intents= Intent(context,Settings::class.java)
                 Intents.putExtra("user",true)
                 context.startActivity(Intents)
-                Animatoo.animateSlideLeft(context)
             }
         }
 
@@ -74,7 +72,7 @@ class usersAdapter(var model: FirebaseRecyclerOptions<userModel>, var context:Co
         else
             drawable=context.getDrawable( R.drawable.happy_woman)!!
 
-        Glide.with(context).load(model.thumb).placeholder(drawable        ) .into(holder.userImage)
+        Glide.with(context).load(model.thumb).placeholder(R.drawable.blank) .into(holder.userImage)
         holder.click(getRef(position).key!!)
         val onlineDatabase= FirebaseDatabase.getInstance().reference.child("onlineStatus").child(
             getRef(position).key!!)
